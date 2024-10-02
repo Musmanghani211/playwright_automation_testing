@@ -1,7 +1,12 @@
 // @ts-check
 const { test, expect } = require("@playwright/test");
+const { snapshot } = require("node:test");
 
-test("has title", async ({ page }) => {
+test("example start page", async ({ page, context }) => {
+  await context.tracing.start({
+    snapshots: true,
+    screenshots: true,
+  });
   await page.goto("https://playwright.dev/");
 
   // Expect a title "to contain" a substring.
